@@ -1,5 +1,2 @@
-Dave, Andrew, Jones, UK, 34, dave.jones@email.com, 100, [2], Show Jumping, BEGINNER
-Dave, Andrew, Jones, UK, 34, dave.jones@email.com, 100, [1], Show Jumping, BEGINNER
-Dave, Andrew, Smith, UK, 34, dave.smith@email.com, 100, [], Show Jumping, BEGINNER
-Steve, Edward, Smith, Spain, 55, steve.smith@email.com, 105, [3], Cross Country, EXPERT
-Dave, Andrew, Stevens, UK, 50, ds@email.com, 102, [2, 5, 2, 7, 2], ShowJumping, BEGINNER
+Dave; Andrew; Jones; UK; 50; dj@email.com; 100; [2, 4, 5, 6, 8]; Show Jumping; BEGINNER
+Steve; William; Smith; Scotland; 40; ss@email.com; 105; null; Dressage; EXPERT

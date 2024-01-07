@@ -26,7 +26,7 @@ public class CompetitorList {
 
             for (int i = 0; i < competitorArrayList.size(); i++) {
                 competitor = competitorArrayList.get(i);
-                String saveData = String.format("%s, %s, %s, %s, %d, %s, %d, %s, %s, %s",
+                String saveData = String.format("%s; %s; %s; %s; %d; %s; %d; %s; %s; %s",
                         competitor.getFirstname(),
                         competitor.getMiddlename(),
                         competitor.getLastname(),
