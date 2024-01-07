@@ -2,8 +2,10 @@ package Controller;
 
 import Model.CompetitorList;
 import Model.Competitor;
+import Model.Level;
 import View.Form;
 import View.CompetitorDetails;
+import Model.Category;
 
 import javax.swing.*;
 import java.io.File;
@@ -26,13 +28,14 @@ public class CompetitorController {
             String middlename = this.form.getMiddlename().trim();
             String lastname = this.form.getLastname().trim();
             String country = this.form.getCountry().trim();
-            String age = this.form.getAge().trim();
+            int age = this.form.getAge();
             String email = this.form.getEmail().trim();
-            String competitornumber = this.form.getCompetitorNumber().trim();
-            String scorearray = this.form.getScoreArray().trim();
-            String category = this.form.getCategory().trim();
-            String level = this.form.getLevel().trim();
+            int competitornumber = this.form.getCompetitorNumber();
+            int[] scorearray = this.form.getScoreArray();
+            Category category = this.form.getCategory();
+            Level level = this.form.getLevel();
 
+            
             // simple validations
             if(firstname.isEmpty()) {
                 JOptionPane.showMessageDialog(this.form, "First Name Required.", "Error",
@@ -46,6 +49,7 @@ public class CompetitorController {
                 JOptionPane.showMessageDialog(this.form, "Last Name Required.", "Error",
                         JOptionPane.ERROR_MESSAGE);
                 return;
+            }
             
             this.database.addCompetitor(new Competitor(firstname, middlename, lastname, country, age, email, competitornumber, scorearray, category, level));
             this.database.saveCompetitor(new File(databaseFile));
@@ -54,7 +58,7 @@ public class CompetitorController {
 
         // load competitors
         this.form.viewCompetitors(e -> {
-            this.competitorDetails.getCompetitors(this.database.loadCompetitors(new File(databaseFile)));
+            this.competitorDetails.getCompetitors(this.database.loadcompetitors(new File(databaseFile)));
         });
     }
 }

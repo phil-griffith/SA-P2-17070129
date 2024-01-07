@@ -1,11 +1,6 @@
 package Model;
 import java.util.Arrays;
 
-//Enum for levels
-enum Level {
- BEGINNER, INTERMEDIATE, EXPERT
-}
-
 public class Competitor extends Person {
     private int competitorNumber;
     private int[] scoreArray;
@@ -101,19 +96,19 @@ this.level = level;
     }
 
 
-    public static void main(String[] args) {
-    	 // Example usage to test the methods
-        int[] scores1 = {5, 4, 5, 4, 3};
-        Category showJumping = new Category("Show Jumping", "Description");
-        Competitor competitor1 = new Competitor("Keith", "John", "Talbot", "UK", 21, "keith@example.com", 100, scores1, showJumping,  Level.BEGINNER);
-
-        int[] scores2 = {4, 3, 5, 2, 4};
-        Category dressage = new Category("Dressage", "Description");
-        Competitor competitor2 = new Competitor("Alice", "Mary", "Jones", "USA", 25, "alice@example.com", 101, scores2, dressage,  Level.INTERMEDIATE);
-
-        System.out.println(competitor1.getFullDetails());
-        System.out.println(competitor2.getFullDetails());
-        System.out.println(competitor1.getShortDetails());
-        System.out.println(competitor2.getShortDetails());
-    }
+//    public static void main(String[] args) {
+//    	 // Example usage to test the methods
+//        int[] scores1 = {5, 4, 5, 4, 3};
+//        Category showJumping = new Category("Show Jumping", "Description");
+//        Competitor competitor1 = new Competitor("Keith", "John", "Talbot", "UK", 21, "keith@example.com", 100, scores1, showJumping,  Level.BEGINNER);
+//
+//        int[] scores2 = {4, 3, 5, 2, 4};
+//        Category dressage = new Category("Dressage", "Description");
+//        Competitor competitor2 = new Competitor("Alice", "Mary", "Jones", "USA", 25, "alice@example.com", 101, scores2, dressage,  Level.INTERMEDIATE);
+//
+//        System.out.println(competitor1.getFullDetails());
+//        System.out.println(competitor2.getFullDetails());
+//        System.out.println(competitor1.getShortDetails());
+//        System.out.println(competitor2.getShortDetails());
+//    }
 }

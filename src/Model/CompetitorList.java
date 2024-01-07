@@ -13,7 +13,7 @@ public class CompetitorList {
     }
 
     // adds competitor to our collection
-    public void addcompetitor(Competitor competitor) {
+    public void addCompetitor(Competitor competitor) {
         competitorArrayList.add(competitor);
     }
 
