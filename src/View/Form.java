@@ -16,7 +16,7 @@ public class Form extends JPanel {
     private JTextField ageField;
     private JTextField emailField;
     private JTextField competitorNumberField;
-    private JList<Integer> scoreArrayField;
+    private JTextField[] scoreArrayField;
     private JTextField categoryField;
     private JTextField levelField;
 
@@ -43,7 +43,7 @@ public class Form extends JPanel {
         ageField = new JTextField(3);
         emailField = new JTextField(25);
         competitorNumberField = new JTextField(25);
-        scoreArrayField = new JList<>(new Integer[]{1, 2, 3, 4, 5});
+        scoreArrayField = new JTextField[5];
         categoryField = new JTextField(25);
         levelField = new JTextField(25);
 
@@ -145,11 +145,25 @@ public class Form extends JPanel {
         gridBagConstraints.anchor = GridBagConstraints.WEST;
 
         add(scoreArrayLabel, gridBagConstraints);
-
-        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 7;
 
-        add(scoreArrayField, gridBagConstraints);
+        int a = 5;
+        for (int i = 0; i < 5; i++) {
+            //JLabel label = new JLabel("Score " + (i + 1) + ": ");
+            scoreArrayField[i] = new JTextField(1); // Accept only 1 character
+            //add(label, gridBagConstraints);
+            
+            GridBagConstraints gbc = new GridBagConstraints();
+            gbc.anchor = GridBagConstraints.WEST;
+            gbc.insets = new Insets(5, a, 5, 5); // Padding
+            a=a+20;
+            gbc.gridx = 1;
+            gbc.gridy = 7;
+            add(scoreArrayField[i], gbc);
+        }
+
+
 
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 8;
@@ -227,7 +241,26 @@ public class Form extends JPanel {
         }
     }
     public int[] getScoreArray() {
-        return scoreArrayField.getSelectedValuesList().stream().mapToInt(Integer::intValue).toArray();
+        int[] integers = new int[5];
+
+        for (int i = 0; i < 5; i++) {
+            String text = scoreArrayField[i].getText();
+            try {
+                // Parse the input as an integer
+                integers[i] = Integer.parseInt(text);
+            } catch (NumberFormatException e) {
+                // Handle the case where the input is not a valid integer
+                return null;
+            }
+
+            // Validate that the input is a single-digit integer
+            if (integers[i] < 0 || integers[i] > 9) {
+                // Handle the case where the input is not a single-digit integer
+                return null;
+            }
+        }
+
+        return integers;
     }
 
     public Category getCategory() {
@@ -265,7 +298,9 @@ public class Form extends JPanel {
             ageField.setText("");
             emailField.setText("");
             competitorNumberField.setText("");
-            scoreArrayField.clearSelection();
+            for (JTextField field : scoreArrayField) {
+                field.setText(""); // Clear the text fields
+            }
             categoryField.setText("");
             levelField.setText("");
         }
