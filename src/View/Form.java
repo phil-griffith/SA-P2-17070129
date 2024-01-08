@@ -15,13 +15,15 @@ public class Form extends JPanel {
     private JTextField countryField;
     private JTextField ageField;
     private JTextField emailField;
-    private JTextField competitorNumberField;
+    //private JTextField competitorNumberField;
     private JTextField[] scoreArrayField;
     private JTextField categoryField;
     private JTextField levelField;
 
     private JButton addButton;
-    private JButton viewButton;
+    
+    // back button
+    private JButton backButton;
 
     public Form() {
 
@@ -31,7 +33,7 @@ public class Form extends JPanel {
         JLabel countryLabel = new JLabel("Country: ");
         JLabel ageLabel = new JLabel("Age: ");
         JLabel emailLabel = new JLabel("Email: ");
-        JLabel competitorNumberLabel = new JLabel("Competitor Number: ");
+        //JLabel competitorNumberLabel = new JLabel("Competitor Number: ");
         JLabel scoreArrayLabel = new JLabel("Score Array (comma-separated): ");
         JLabel categoryLabel = new JLabel("Category: ");
         JLabel levelLabel = new JLabel("Level: ");
@@ -42,15 +44,18 @@ public class Form extends JPanel {
         countryField = new JTextField(25);
         ageField = new JTextField(3);
         emailField = new JTextField(25);
-        competitorNumberField = new JTextField(25);
+        //competitorNumberField = new JTextField(25);
         scoreArrayField = new JTextField[5];
         categoryField = new JTextField(25);
         levelField = new JTextField(25);
 
         addButton = new JButton("Add Competitor");
         addButton.setPreferredSize(new Dimension(278, 40));
-        viewButton = new JButton("View All Competitors");
-        viewButton.setPreferredSize(new Dimension(278, 40));
+        
+        backButton = new JButton("Back");
+        backButton.setPreferredSize(new Dimension(278, 40));
+
+        
 
         // space between fields
         Insets fieldsInset = new Insets(0, 0, 10, 0);
@@ -133,20 +138,20 @@ public class Form extends JPanel {
         gridBagConstraints.gridy = 6;
         gridBagConstraints.anchor = GridBagConstraints.WEST;
 
-        add(competitorNumberLabel, gridBagConstraints);
-
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 6;
-
-        add(competitorNumberField, gridBagConstraints);
-
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 7;
-        gridBagConstraints.anchor = GridBagConstraints.WEST;
+//        add(competitorNumberLabel, gridBagConstraints);
+//
+//        gridBagConstraints.gridx = 1;
+//        gridBagConstraints.gridy = 6;
+//
+//        add(competitorNumberField, gridBagConstraints);
+//
+//        gridBagConstraints.gridx = 0;
+//        gridBagConstraints.gridy = 7;
+//        gridBagConstraints.anchor = GridBagConstraints.WEST;
 
         add(scoreArrayLabel, gridBagConstraints);
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 7;
+        gridBagConstraints.gridy = 6;
 
         int a = 5;
         for (int i = 0; i < 5; i++) {
@@ -159,47 +164,47 @@ public class Form extends JPanel {
             gbc.insets = new Insets(5, a, 5, 5); // Padding
             a=a+20;
             gbc.gridx = 1;
-            gbc.gridy = 7;
+            gbc.gridy = 6;
             add(scoreArrayField[i], gbc);
         }
 
 
 
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 8;
+        gridBagConstraints.gridy = 7;
         gridBagConstraints.anchor = GridBagConstraints.WEST;
 
         add(categoryLabel, gridBagConstraints);
 
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 8;
+        gridBagConstraints.gridy = 7;
 
         add(categoryField, gridBagConstraints);
 
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 9;
+        gridBagConstraints.gridy = 8;
         gridBagConstraints.anchor = GridBagConstraints.WEST;
 
         add(levelLabel, gridBagConstraints);
 
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 9;
+        gridBagConstraints.gridy = 8;
 
         add(levelField, gridBagConstraints);
 
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 9;
+        gridBagConstraints.insets = buttonInset;
+        gridBagConstraints.gridwidth = 2;
+
+        add(addButton, gridBagConstraints);
+        
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 10;
         gridBagConstraints.insets = buttonInset;
         gridBagConstraints.gridwidth = 2;
 
-        add(addButton, gridBagConstraints);
-
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 11;
-        gridBagConstraints.insets = buttonInset;
-        gridBagConstraints.gridwidth = 2;
-
-        add(viewButton, gridBagConstraints);
+        add(backButton, gridBagConstraints);
     }
 
     // getters for all attributes
@@ -232,14 +237,6 @@ public class Form extends JPanel {
         return emailField.getText();
     }
 
-    public int getCompetitorNumber() {
-    	try {
-            return Integer.parseInt(competitorNumberField.getText());
-        } catch (NumberFormatException e) {
-            // Handle the case where the input is not a valid integer
-            return 0;  // Default value or handle as needed
-        }
-    }
     public int[] getScoreArray() {
         int[] integers = new int[5];
 
@@ -265,8 +262,6 @@ public class Form extends JPanel {
 
     public Category getCategory() {
         String categoryText = categoryField.getText();
-
-        // Assuming Category is a class with a constructor that takes a String
         return new Category(categoryText, categoryText);
     }
 
@@ -283,10 +278,12 @@ public class Form extends JPanel {
     public void submitCompetitors(ActionListener actionListener) {
         addButton.addActionListener(actionListener);
     }
-
-    public void viewCompetitors(ActionListener actionListener) {
-        viewButton.addActionListener(actionListener);
+    
+    // event listener for back button
+    public void backButton(ActionListener actionListener) {
+        backButton.addActionListener(actionListener);
     }
+
 
     // reset fields
     public void reset(boolean bln) {
@@ -297,7 +294,7 @@ public class Form extends JPanel {
             countryField.setText("");
             ageField.setText("");
             emailField.setText("");
-            competitorNumberField.setText("");
+            //competitorNumberField.setText("");
             for (JTextField field : scoreArrayField) {
                 field.setText(""); // Clear the text fields
             }

@@ -44,6 +44,19 @@ public class CompetitorDetails extends JPanel {
             i++;
         }
     }
+    
+    // gets next competitor number 
+    public int getNextCN(Object[] objects) {
+        int i = 0;
+        int testRow = 0;
+        while(i < objects.length) {
+            String row = objects[i].toString().trim();
+            String[] rows = row.split(";");
+            testRow =  Integer.parseInt(rows[6].trim()) + 1;
+            i++;
+        }
+        return testRow;
+    }
 
     // event listener for back button
     public void backButton(ActionListener actionListener) {

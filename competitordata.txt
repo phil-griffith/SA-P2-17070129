@@ -1,2 +1,6 @@
 Dave; Andrew; Jones; UK; 50; dj@email.com; 100; [2, 4, 5, 6, 8]; Show Jumping; BEGINNER
 Steve; William; Smith; Scotland; 40; ss@email.com; 105; null; Dressage; EXPERT
+a; b; c; ; 100000000; ; 0; null; ; BEGINNER
+Dave; A; Smith; UK; 35; ds@email.com; 100; null; Show Jumping; BEGINNER
+a; b; c; UK; 25; email.email@email.com; 101; null; Show Jumping; BEGINNER
+a; b; c; UK; 25; e.e@email.com; 102; null; Cross Country; EXPERT

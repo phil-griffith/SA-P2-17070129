@@ -4,6 +4,7 @@ import Model.CompetitorList;
 import Model.Competitor;
 import Model.Level;
 import View.Form;
+import View.Menu;
 import View.CompetitorDetails;
 import Model.Category;
 
@@ -14,11 +15,13 @@ public class CompetitorController {
     // data file
     private String databaseFile = "competitordata.txt";
     private CompetitorList database;
+    private Menu menu;
     private Form form;
     private CompetitorDetails competitorDetails;
 
-    public CompetitorController(Form form, CompetitorDetails competitorDetails) {
+    public CompetitorController(Menu menu, Form form, CompetitorDetails competitorDetails) {
         this.database = new CompetitorList();
+        this.menu = menu;
         this.form = form;
         this.competitorDetails = competitorDetails;
 
@@ -30,7 +33,7 @@ public class CompetitorController {
             String country = this.form.getCountry().trim();
             int age = this.form.getAge();
             String email = this.form.getEmail().trim();
-            int competitornumber = this.form.getCompetitorNumber();
+            int competitornumber = this.competitorDetails.getNextCN(this.database.loadcompetitors(new File(databaseFile)));
             int[] scorearray = this.form.getScoreArray();
             Category category = this.form.getCategory();
             Level level = this.form.getLevel();
@@ -57,8 +60,13 @@ public class CompetitorController {
         });
 
         // load competitors
-        this.form.viewCompetitors(e -> {
+        this.menu.viewCompetitors(e -> {
             this.competitorDetails.getCompetitors(this.database.loadcompetitors(new File(databaseFile)));
+        });
+        
+        // update competitor
+        this.menu.updateCompetitor(e -> {
+            this.competitorDetails.getNextCN(this.database.loadcompetitors(new File(databaseFile)));
         });
     }
 }
