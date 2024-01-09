@@ -57,14 +57,15 @@ public class Form2 extends JPanel {
         backButton = new JButton("Back");
         backButton.setPreferredSize(new Dimension(278, 40));
         
-        for (int i = 0; i < 5; i++) {
+        int a = 0;
+		for (int i = 0; i < 5; i++) {
             //JLabel label = new JLabel("Score " + (i + 1) + ": ");
             scoreArrayField[i] = new JTextField(1); // Accept only 1 character
             //add(label, gridBagConstraints);
             
             GridBagConstraints gbc = new GridBagConstraints();
             gbc.anchor = GridBagConstraints.WEST;
-            gbc.insets = new Insets(5, a, 5, 5); // Padding
+            gbc.insets = new Insets(5, a , 5, 5); // Padding
             a=a+20;
             gbc.gridx = 1;
             gbc.gridy = 6;

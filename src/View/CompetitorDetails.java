@@ -62,6 +62,7 @@ public class CompetitorDetails extends JPanel {
             }
             i++;
         }
+       
         return competitor;
     }
     

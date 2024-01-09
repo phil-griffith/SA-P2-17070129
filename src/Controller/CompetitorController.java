@@ -120,7 +120,7 @@ public class CompetitorController {
         this.updateCompetitor.getCompetitor(e -> {
         	int compNo = this.updateCompetitor.getCompNo();
         	
-            this.competitorDetails.getCompetitor(this.database.loadcompetitors(new File(databaseFile)),compNo);
+            this.updateCompetitor.getCompetitor(this.database.loadcompetitors(new File(databaseFile)),compNo);
   });
 }
 }

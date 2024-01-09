@@ -59,6 +59,40 @@ public class UpdateCompetitor extends JPanel {
         }
     }
     
+    // gets competitors from database and loads to table
+    public String[] getCompetitor(Object[] objects, int compNO) {
+        int i = 0;
+        String[] competitor = new String[10];
+        String competitorString = "";
+       while(i < objects.length) {
+            String row = objects[i].toString().trim();
+            String[] rows = row.split(";");
+            if (Integer.valueOf(rows[6].trim()) == compNO)  {
+            	System.out.println("Found Competitor in file");
+            	competitor = rows;
+            	competitorString = row;
+            	System.out.println(row);
+            	String temp = "a; b; c; UK; 25; email.email@email.com; 101; 10; Show Jumping; BEGINNER";
+            	objects[i] = temp;      
+            	System.out.println(objects[i]);
+            	
+
+            }
+            i++;
+        }
+   	Frame f = new JFrame();
+   	JTextArea t = new JTextArea(200, i);
+       f.add(t);
+       
+       f.setSize(500, 500);
+       t.setSize(500, 500);
+       f.setLayout(null);
+       f.setVisible(true);
+       t.setText(competitorString);
+       
+        return competitor;
+    }
+    
     public void getCompetitor(ActionListener actionListener) {
         searchButton.addActionListener(actionListener);
     }
