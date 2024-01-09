@@ -20,12 +20,10 @@ public class CompetitorList {
     // saves competitor to database file
     public void saveCompetitor(File file) {
         try {
-            // competitor model
-            Competitor competitor;
             BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file, true));
 
             for (int i = 0; i < competitorArrayList.size(); i++) {
-                competitor = competitorArrayList.get(i);
+                Competitor competitor = competitorArrayList.get(i);
                 String saveData = String.format("%s; %s; %s; %s; %d; %s; %d; %s; %s; %s",
                         competitor.getFirstname(),
                         competitor.getMiddlename(),
@@ -38,6 +36,36 @@ public class CompetitorList {
                         competitor.getCategory().getName(),
                         competitor.getLevel());
 
+                bufferedWriter.write(saveData);
+                bufferedWriter.newLine();
+            }
+
+            // prevents memory leak
+            bufferedWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    // updates competitor in database file
+    public void updateCompetitor(File file, String data, String compNo, Object[] objects) {
+        try {
+            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file, true));
+
+            int i = 0;
+            while(i < objects.length) {
+                String row = objects[i].toString().trim();
+                String[] rows = row.split(";");
+                String saveData;
+                if (rows[6].trim() == compNo)  {
+                	System.out.println("Found Competitor in file");
+                	System.out.println(row);
+                	saveData = data;
+                }
+                else {
+                saveData = row;
+                }
+                i++;
                 bufferedWriter.write(saveData);
                 bufferedWriter.newLine();
             }
@@ -65,5 +93,5 @@ public class CompetitorList {
     }
 
 
-}
 
+}

@@ -15,23 +15,27 @@ public class MainFrame extends JFrame {
         cardLayout = new CardLayout();
         Form form = new Form();
         Menu menu = new Menu();
+        UpdateCompetitor updateCompetitor = new UpdateCompetitor();
         CompetitorDetails competitorDetails = new CompetitorDetails();
         // sets our layout as a card layout
         setLayout(cardLayout);
 
         // initialize competitor controller
-        new CompetitorController(menu, form, competitorDetails);
+        new CompetitorController(menu, updateCompetitor, form, competitorDetails);
 
         // adds view to card layout with unique constraints
         add(menu, "menu");
         add(form, "form");
         add(competitorDetails, "competitor details");
+        add(updateCompetitor, "updateCompetitor");
         // switch view according to its constraints on click
         menu.addCompetitor(e -> cardLayout.show(MainFrame.this.getContentPane(), "form"));
         menu.viewCompetitors(e -> cardLayout.show(MainFrame.this.getContentPane(), "competitor details"));
         competitorDetails.backButton(e -> cardLayout.show(MainFrame.this.getContentPane(), "menu"));
         form.backButton(e -> cardLayout.show(MainFrame.this.getContentPane(), "menu"));
-
+        menu.updateCompetitor(e -> cardLayout.show(MainFrame.this.getContentPane(), "updateCompetitor"));
+      
+        
         
        
         // frame width & height

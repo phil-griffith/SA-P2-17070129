@@ -45,6 +45,26 @@ public class CompetitorDetails extends JPanel {
         }
     }
     
+    // gets competitors from database and loads to table
+    public String[] getCompetitor(Object[] objects, int compNO) {
+        int i = 0;
+        String[] competitor = new String[10];
+       while(i < objects.length) {
+            String row = objects[i].toString().trim();
+            String[] rows = row.split(";");
+            if (Integer.valueOf(rows[6].trim()) == compNO)  {
+            	System.out.println("Found Competitor in file");
+            	competitor = rows;
+            	System.out.println(row);
+            	String temp = "a; b; c; UK; 25; email.email@email.com; 101; 10; Show Jumping; BEGINNER";
+            	objects[i] = temp;      
+            	System.out.println(objects[i]);
+            }
+            i++;
+        }
+        return competitor;
+    }
+    
     // gets next competitor number 
     public int getNextCN(Object[] objects) {
         int i = 0;
